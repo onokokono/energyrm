@@ -23,8 +23,30 @@ const Container = () => {
         });
 
         for (let key in genres) {
-            data.push({ name: key, BookCount: genres[key] });
+            data.push({ name: key, 'Book Count By Genre': genres[key] });
         }
+
+        return data;
+    }
+
+    const averagePageByGenre = (dataBook) => {
+        const data = [];
+        const genres = {};
+
+        dataBook.forEach(book => {
+            if (!genres[book.genre]) {
+                genres[book.genre] = { bookCount: 1, totalPages: +book.pages };
+            } else {
+                genres[book.genre].bookCount += 1;
+                genres[book.genre].totalPages += +book.pages;
+            };
+        })
+
+        for (let key in genres) {
+            const avgPages = genres[key].totalPages / genres[key].bookCount;
+            data.push({ name: key, 'Average Pages by Genre': avgPages })
+        }
+
 
         return data;
     }
@@ -56,8 +78,8 @@ const Container = () => {
     return (
         <div className={scss.container} >
             <div className={scss.graphs}>
-                <BarChart data={bookCountByGenre(bestSellers)} dataKeys={[{ key: 'BookCount', color: '#a18cd1' }]} />
-                <BarChart data={bookCountByGenre(bestSellers)} dataKeys={[{ key: 'BookCount', color: '#8884d8' }]} />
+                <BarChart data={bookCountByGenre(bestSellers)} dataKeys={[{ key: 'Book Count By Genre', color: '#a18cd1' }]} />
+                <BarChart data={averagePageByGenre(bestSellers)} dataKeys={[{ key: 'Average Pages by Genre', color: '#8884d8' }]} />
             </div>
             <div className={scss.textData}>
                 <Table data={bestSellers} />

@@ -1,0 +1,17 @@
+.input{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
+
+.input input{
+    padding: 5px;
+}
+
+.input .error{
+    justify-self: flex-end;
+    color: lightcoral;
+    grid-column: 2/3;
+}

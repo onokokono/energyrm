@@ -37,6 +37,12 @@ const Container = () => {
             </div>)
     });
 
+    const addNewBook = (book) => {
+        const curState = [...bestSellers];
+        curState.unshift(book);
+        setBestSellers(curState);
+    }
+
     return (
         <div className={scss.container} >
             <div className={scss.graphs}>
@@ -57,7 +63,7 @@ const Container = () => {
                 </div>
                 <div className={scss.userForm}>
 
-                    <UserInput />
+                    <UserInput onSubmit={addNewBook} />
 
                 </div>
             </div>

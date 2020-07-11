@@ -8,7 +8,7 @@ const InputWithDataList = (props) => {
     return (
         <div className={scss.input} >
             <p> {props.children} </p>
-            <input data-testid={props.testid} name={props.name} list='genreDataList' placeholder={props.placeholder} onChange={props.onChange} />
+            <input value={props.value} data-testid={props.testid} name={props.name} list='genreDataList' placeholder={props.placeholder} onChange={props.onChange} />
             <datalist id='genreDataList'>
                 {datalist}
             </datalist>

@@ -1,8 +1,39 @@
 .UserInput {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    button{
-        padding: 10px;
+  form {
+    margin-top: 20px;
+
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
     }
+
+    button {
+      padding: 10px;
+      margin: 10px 10px;
+      border: none;
+      border-radius: 5px;
+      justify-self: flex-end;
+      width: 100px;
+    }
+
+    .submit {
+      background-color: #a18cd1;
+      color: #ffffff;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: #8884d8;
+        color: #000000;
+      }
+    }
+
+    .error {
+      color: lightcoral;
+      justify-self: flex-end;
+    }
+  }
 }

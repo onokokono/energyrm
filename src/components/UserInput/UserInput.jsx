@@ -42,7 +42,7 @@ const UserInput = (props) => {
 
         if (isValidForm) {
             props.onSubmit(formValues);
-            setFormErrors(initialState);
+            clearForm();
         }
     }
 
@@ -61,18 +61,45 @@ const UserInput = (props) => {
         }
     }
 
+    const clearForm = () => {
+        setFormValues(initialState);
+        setFormErrors(initialState);
+    }
+
 
     return (
         <div className={scss.UserInput} >
             <h3> Add New Book </h3>
 
             <form onSubmit={onSubmitHandler} >
-                <Input testid='inputTitle' error={formErrors.title} name='title' placeholder='Title' onChange={inputChangeHandler}> Title: </Input>
-                <InputWithDataList testid='inputGenre' error={formErrors.genre} name='genre' datalist={genresData} placeholder='Genre' onChange={inputChangeHandler}> Genre: </InputWithDataList>
-                <Input testid='inputPages' error={formErrors.pages} name='pages' placeholder='Pages' onChange={inputChangeHandler}> Pages: </Input>
+                <Input
+                    value={formValues.title}
+                    testid='inputTitle'
+                    error={formErrors.title}
+                    name='title'
+                    placeholder='Title'
+                    onChange={inputChangeHandler}> Title: </Input>
+                <InputWithDataList
+                    value={formValues.genre}
+                    testid='inputGenre'
+                    error={formErrors.genre}
+                    name='genre'
+                    datalist={genresData}
+                    placeholder='Genre'
+                    onChange={inputChangeHandler}> Genre: </InputWithDataList>
+                <Input
+                    value={formValues.pages}
+                    testid='inputPages'
+                    error={formErrors.pages}
+                    name='pages'
+                    placeholder='Pages'
+                    onChange={inputChangeHandler}> Pages: </Input>
 
-                <button> CLEAR </button>
-                <button data-testid='submitBtn' type='submit'> ADD </button>
+                <div className={scss.buttons} >
+                    <button type='button' onClick={clearForm} className={scss.clear} > CLEAR </button>
+                    <button className={scss.submit} data-testid='submitBtn' type='submit'> ADD </button>
+                </div>
+                <p className={scss.error} > {props.error} </p>
             </form>
 
         </div>

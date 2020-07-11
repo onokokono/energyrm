@@ -6,10 +6,12 @@ import bestSellerData from '../data/bestSellers.json';
 import BarChart from '../components/BarChart/ChartBar';
 //Components
 import UserInput from '../components/UserInput/UserInput';
+import Table from '../components/Table/Table';
 
 const Container = () => {
 
     const [bestSellers, setBestSellers] = useState(bestSellerData);
+    const [error, setError] = useState('');
 
     const bookCountByGenre = (bookData) => {
         const data = [];
@@ -27,20 +29,28 @@ const Container = () => {
         return data;
     }
 
-    const tableDataRows = bestSellers.map((book, index) => {
-        return (
-            <div key={book.title} data-testid={`tableRows-${book.title}`} className={scss.tableRow} >
-                <p>{index + 1}</p>
-                <p>{book.title}</p>
-                <p>{book.genre}</p>
-                <p>{book.pages}</p>
-            </div>)
-    });
-
     const addNewBook = (book) => {
-        const curState = [...bestSellers];
-        curState.unshift(book);
-        setBestSellers(curState);
+
+        const isBookValid = bookValidator(book.title);
+
+        if (isBookValid) {
+            const curState = [...bestSellers];
+            curState.unshift(book);
+            setBestSellers(curState);
+        } else {
+            setError(`Can't add same book twice!`);
+        }
+    }
+
+    const bookValidator = (title) => {
+        let isValid = true;
+
+        bestSellers.forEach(book => {
+            if (book.title.toLowerCase() === title.toLowerCase())
+                isValid = false;
+        });
+
+        return isValid;
     }
 
     return (
@@ -50,20 +60,10 @@ const Container = () => {
                 <BarChart data={bookCountByGenre(bestSellers)} dataKeys={[{ key: 'BookCount', color: '#8884d8' }]} />
             </div>
             <div className={scss.textData}>
-                <div className={scss.table} >
-                    <div className={[scss.tableHeader, scss.tableTemplate].join(' ')} >
-                        <h3>#</h3>
-                        <h3>Title</h3>
-                        <h3>Genre</h3>
-                        <h3>Pages</h3>
-                    </div>
-                    <div className={scss.tableContent}>
-                        {tableDataRows}
-                    </div>
-                </div>
+                <Table data={bestSellers} />
                 <div className={scss.userForm}>
 
-                    <UserInput onSubmit={addNewBook} />
+                    <UserInput error={error} onSubmit={addNewBook} />
 
                 </div>
             </div>

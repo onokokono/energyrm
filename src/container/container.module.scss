@@ -1,8 +1,4 @@
-@mixin tableTemplate {
-  display: grid;
-  grid-template-columns: 0.1fr 0.4fr 0.4fr 0.1fr;
-  padding: 5px 10px;
-}
+
 
 .container {
   background-color: #ffffff;
@@ -23,31 +19,7 @@
     grid-template-columns: 0.6fr 0.4fr;
     gap: 10px;
 
-    .table {
-
-      .tableHeader {
-        @include tableTemplate();
-        background-color: #a18cd1;
-        color: #ffffff;
-        display: grid;
-        grid-template-columns: 0.1fr 0.4fr 0.4fr 0.1fr;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-      }
-      .tableContent {
-          width: auto;
-          height: 300px;
-          overflow: scroll;
-        .tableRow {
-          @include tableTemplate();
-
-          &:nth-child(even) {
-            background-color: rgba(0, 0, 0, .1);
-          }
-
-        }
-      }
-    }
+    
     .userForm {
         width: 100%;
         height: 100%;

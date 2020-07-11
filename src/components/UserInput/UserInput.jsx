@@ -67,12 +67,12 @@ const UserInput = (props) => {
             <h3> Add New Book </h3>
 
             <form onSubmit={onSubmitHandler} >
-                <Input error={formErrors.title} name='title' placeholder='Title' onChange={inputChangeHandler}> Title: </Input>
-                <InputWithDataList error={formErrors.genre} name='genre' datalist={genresData} placeholder='Genre' onChange={inputChangeHandler}> Genre: </InputWithDataList>
-                <Input error={formErrors.pages} name='pages' placeholder='Pages' onChange={inputChangeHandler}> Pages: </Input>
+                <Input testid='inputTitle' error={formErrors.title} name='title' placeholder='Title' onChange={inputChangeHandler}> Title: </Input>
+                <InputWithDataList testid='inputGenre' error={formErrors.genre} name='genre' datalist={genresData} placeholder='Genre' onChange={inputChangeHandler}> Genre: </InputWithDataList>
+                <Input testid='inputPages' error={formErrors.pages} name='pages' placeholder='Pages' onChange={inputChangeHandler}> Pages: </Input>
 
                 <button> CLEAR </button>
-                <button type='submit'> ADD </button>
+                <button data-testid='submitBtn' type='submit'> ADD </button>
             </form>
 
         </div>

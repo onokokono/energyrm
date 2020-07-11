@@ -12,7 +12,7 @@ import {
 
 const ChartBar = (props) => {
 
-    let dataKeys = props.dataKeys.map(bar => <Bar dataKey={bar.key} fill={bar.color} />)
+    let dataKeys = props.dataKeys.map(bar => <Bar key={bar.key} dataKey={bar.key} fill={bar.color} />)
 
     return (
         <ResponsiveContainer width='100%' height={300}>

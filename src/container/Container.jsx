@@ -29,7 +29,7 @@ const Container = () => {
 
     const tableDataRows = bestSellers.map((book, index) => {
         return (
-            <div className={scss.tableRow} >
+            <div key={book.title} data-testid={`tableRows-${book.title}`} className={scss.tableRow} >
                 <p>{index + 1}</p>
                 <p>{book.title}</p>
                 <p>{book.genre}</p>

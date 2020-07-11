@@ -5,7 +5,7 @@ const Input = (props) => {
     return (
         <div className={scss.input} >
             <p> {props.children} </p>
-            <input name={props.name} placeholder={props.placeholder} onChange={props.onChange}  />
+            <input data-testid={props.testid} name={props.name} placeholder={props.placeholder} onChange={props.onChange}  />
             <p className={scss.error} > {props.error} </p>
         </div>
     )

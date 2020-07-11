@@ -2,7 +2,11 @@
   margin: 0;
   padding: 0;
 }
-
-html{
-  background-color: lightblue;
+.App {
+  background: linear-gradient(45deg, #a18cd1 0%, #fad0c4 99%, #fbc2eb 100%);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
